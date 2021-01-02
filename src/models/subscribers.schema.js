@@ -15,7 +15,7 @@ const subscribersSchema = new Schema(
 
 const validateSubscriber = (user) => {
   const schema = Joi.object({
-    email: Joi.string().email().min(5).max(500).required(),
+    email: Joi.string().email().required(),
   });
   return schema.validate(user);
 };
