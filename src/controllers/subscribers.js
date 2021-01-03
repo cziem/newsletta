@@ -81,6 +81,7 @@ module.exports = {
 
       EmailSender.sendMail(email, message, "Welcome onboard, Meev");
     } catch (error) {
+      console.log(error, "error");
       res.status(500).send(`Oppsss, an error occurred: ${error.message}`);
     }
   },
