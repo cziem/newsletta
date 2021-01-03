@@ -1,5 +1,5 @@
 const nodeMailer = require("nodemailer");
-const { isProd } = require("../lib/utils");
+const isProd = process.env.NODE_ENV === "production";
 
 const EmailSender = {
   sendMail: async function (emails, message, subject, fromWho) {
