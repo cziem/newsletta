@@ -23,7 +23,7 @@ const EmailSender = {
 
     // send mail with defined transport object
     let mailData = await transporter.sendMail({
-      from: fromWho ? fromWho : `"George Dev" <${process.env.EMAIL_USER}>`,
+      from: fromWho ? fromWho : `"George Dev" <desk@newsletta.com>`,
       to: emails,
       subject: subject,
       html: message,
