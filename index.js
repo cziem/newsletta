@@ -15,7 +15,9 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(logger("dev"));
+if (!isProd) {
+  app.use(logger("dev"));
+}
 
 const DB_URL = isProd ? DB_URI : DB_URI_LOCAL;
 const subscriberRoutes = require("./src/routes/subscriber.routes");
