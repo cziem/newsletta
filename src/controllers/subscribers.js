@@ -2,6 +2,7 @@ const {
   Subscribers,
   validateSubscriber,
 } = require("../models/subscribers.schema");
+const EmailSender = require("../lib/sendMail");
 
 // Get all subscribers
 module.exports = {
@@ -60,8 +61,25 @@ module.exports = {
       await Subscribers.create({ email });
 
       res.status(200).json({
-        message: "You have successfully subscribed.",
+        message:
+          "You have successfully subscribed. We have a surprise for you in your inbox",
       });
+
+      const message = `
+        Welcome to <b>Meeva Letta</b>, we are thrilled you have joined us.
+        <br />
+        A couple of things we'd like you to do:
+
+        <ol>
+          <li>Get your seat belt on</li>
+          <li>Grab a cup of coffee</li>
+          <li>Get ready for Meeva Fun</li>
+        </ol>
+
+        See you in our monthly digest, every 2nd Tuesday, I'd be here to give you a ride.
+      `;
+
+      EmailSender.sendMail(email, message, "Welcome onboard, Meev");
     } catch (error) {
       res.status(500).send(`Oppsss, an error occurred: ${error.message}`);
     }

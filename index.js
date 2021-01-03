@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./src/jobs/tuesdayNewsletter");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const express = require("express");
