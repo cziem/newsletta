@@ -3,7 +3,6 @@ require("./src/jobs/tuesdayNewsletter");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const express = require("express");
-const logger = require("morgan");
 const cors = require("cors");
 const { PORT, DB_URI, DB_URI_LOCAL } = process.env;
 const DB = require("./src/config/database");
@@ -17,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 if (!isProd) {
+  const logger = require("morgan");
   app.use(logger("dev"));
 }
 
