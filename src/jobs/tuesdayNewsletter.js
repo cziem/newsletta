@@ -39,7 +39,7 @@ cron.schedule("* * * * *", async () => {
 
 // Schedule a newsletter task
 // The date signature means -> Run task every 8th - 14th day of the month, we'd then check to ensure that the day is 'Tuesday' before sending the newsletter.
-cron.schedule("0 7 8-14 * *", () => {
+cron.schedule("0 7 8-14 * *", async () => {
   const isTuesday = moment.weekdays(TODAY) === "Tuesday";
 
   // Send newsletter only on the 2nd Tuesday of the month.
