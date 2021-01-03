@@ -3,6 +3,7 @@ require("./src/jobs/tuesdayNewsletter");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const express = require("express");
+const logger = require("morgan");
 const cors = require("cors");
 const { PORT, DB_URI, DB_URI_LOCAL } = process.env;
 const DB = require("./src/config/database");
@@ -15,8 +16,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-if (!isProd) {
-  const logger = require("morgan");
+if (app.get("env") === "production") {
+  app.use(logger("combined"));
+} else {
   app.use(logger("dev"));
 }
 
