@@ -31,6 +31,6 @@ new DB(superAdminDetails).connect(DB_URL);
 app.use("/api/subscribers", subscriberRoutes);
 app.use(error);
 
-app.listen(PORT, () =>
-  console.log(`server running at http://localhost:${PORT}`)
-);
+const address = isProd ? "https://newsletta.herokuapp.com" : "http://localhost";
+
+app.listen(PORT, () => console.log(`server running at ${address}:${PORT}`));
