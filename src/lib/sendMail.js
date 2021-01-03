@@ -10,7 +10,8 @@ const EmailSender = {
 
   mailer: async function (emails, message, subject, fromWho) {
     let transporter = nodeMailer.createTransport({
-      host: "gmail",
+      // host: "gmail",
+      service: "gmail",
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
