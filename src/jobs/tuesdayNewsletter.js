@@ -34,6 +34,7 @@ cron.schedule("* * * * *", async () => {
     <p>We invite you to check it out today at <a href="#">meevapad.com</a></p>
   `;
 
+  if (subscribersList.length === 0) return;
   EmailSender.sendMail(subscribersList, message, "Meeva Letta Digest");
 });
 
