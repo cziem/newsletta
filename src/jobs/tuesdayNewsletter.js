@@ -11,31 +11,9 @@ const TODAY = moment().toDate();
 cron.schedule("* * * * *", async () => {
   console.log("running a task every minute");
   const isTuesday = moment.weekdays(TODAY) === "Tuesday";
-  console.log(isTuesday, "tuesday?");
-
-  const subscribers = await Subscribers.find({}, { email: 1 });
-  const subscribersList = subscribers.map((item) => item.email);
-
-  const message = `
-    Hello there,
-    <br />
-    <br />
-    
-    Top of the morning to you, today we'd love to introduce you to our new product; <b>MeevePad</b>.
-
-    <h2>MeevePad</h2>
-    <p>
-      <b>MeevePad</b> is our new innovation auto pilot, created just for you. We heard you, and now we've built you your delight.
-      <br />
-      With this new feature, you'd be able to do all that you love and more all from the comfort of your room.
-    </p>
-
-    <h3>Come Check it out</h3>
-    <p>We invite you to check it out today at <a href="#">meevapad.com</a></p>
-  `;
-
-  if (subscribersList.length === 0) return;
-  EmailSender.sendMail(subscribersList, message, "Meeva Letta Digest");
+  console.log(
+    `Today is ${TODAY}. Meeva health check for all systems are okay!`
+  );
 });
 
 // Schedule a newsletter task
