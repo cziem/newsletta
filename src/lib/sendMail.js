@@ -10,20 +10,19 @@ const EmailSender = {
 
   mailer: async function (emails, message, subject, fromWho) {
     let transporter = nodeMailer.createTransport({
-      host: "smtp.zoho.com",
-      // service: "gmail",
+      host: "smtp-relay.gmail.com",
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
-      tls: { rejectUnauthorized: true },
+      tls: { rejectUnauthorized: false },
     });
 
     // send mail with defined transport object
     let mailData = await transporter.sendMail({
-      from: fromWho ? fromWho : `"George Dev" <desk@newsletta.com>`,
+      from: fromWho ? fromWho : `"George Dev" <${process.env.EMAIL_USER}>`,
       to: emails,
       subject: subject,
       html: message,
